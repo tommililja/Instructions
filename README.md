@@ -1,3 +1,3 @@
 # Instructions
 
-Dpendency interpretation in F#
+Dependency interpretation in F#
