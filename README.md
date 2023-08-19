@@ -1,4 +1,4 @@
-Dependency interpretation in F#
+Example:
 
 ```fsharp
 module Dice =
