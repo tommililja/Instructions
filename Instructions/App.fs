@@ -15,12 +15,11 @@ module App =
     let interpreter = {
         Delay = fun ms -> Task.Delay(ms) |> Async.AwaitTask
         GenerateNumber = fun max -> random.Next(1, max + 1)
+        Log = Console.WriteLine
     }
 
-    let result =
-        dice
-        |> Dice.roll
-        |> Instruction.run interpreter
-        |> Async.RunSynchronously
-
-    Console.WriteLine($"Dice: {result}.")
+    dice
+    |> Dice.roll
+    |> Instruction.run interpreter
+    |> Async.RunSynchronously
+    |> ignore

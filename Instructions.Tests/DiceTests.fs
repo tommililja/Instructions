@@ -8,10 +8,11 @@ module DiceTests =
     let private interpreter = {
         Delay = ignore >> Async.ret
         GenerateNumber = id
+        Log = ignore
     }
 
     [<Fact>]
-    let ``Assert dice roll is equal to max`` () = async {
+    let ``Dice roll is equal to max`` () = async {
 
         let dice = {
             Size = 6

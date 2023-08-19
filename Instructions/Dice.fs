@@ -18,5 +18,7 @@ module Dice =
             |> Option.map Instruction.delay
             |> Option.defaultWith Instruction.ret
 
+        do! Instruction.log $"Dice rolled: %i{number}."
+
         return number
     }
