@@ -20,6 +20,6 @@ module App =
 
     dice
     |> Dice.roll
-    |> Instruction.run interpreter
+    |> Instruction.interpret interpreter
     |> Async.RunSynchronously
     |> ignore

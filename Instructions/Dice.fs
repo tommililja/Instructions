@@ -7,18 +7,20 @@ type Dice = {
 
 module Dice =
 
+    open Instruction
+
     let roll dice = instr {
 
         let! number =
             dice.Size
-            |> Instruction.generateNumber
+            |> generateNumber
 
         do!
             dice.Delay
-            |> Option.map Instruction.delay
-            |> Option.defaultWith Instruction.ret
+            |> Option.map delay
+            |> Option.defaultWith ret
 
-        do! Instruction.log $"Dice rolled: %i{number}."
+        do! log $"Dice rolled: %i{number}."
 
         return number
     }

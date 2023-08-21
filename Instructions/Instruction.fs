@@ -26,19 +26,19 @@ module Instruction =
 
     let map fn = bind (fn >> ret)
 
-    let rec run interpreter = function
+    let rec interpret interpreter = function
         | Delay (ms, next) ->
             interpreter.Delay ms
             |> next
-            |> Async.bind (run interpreter)
+            |> Async.bind (interpret interpreter)
         | GenerateNumber (max, next) ->
             interpreter.GenerateNumber max
             |> next
-            |> run interpreter
+            |> interpret interpreter
         | Log (str, next) ->
             interpreter.Log str
             |> next
-            |> run interpreter
+            |> interpret interpreter
         | Done x -> Async.ret x
 
     let delay ms = Delay (ms, Async.map ret)

@@ -22,7 +22,7 @@ module DiceTests =
         let! roll =
             dice
             |> Dice.roll
-            |> Instruction.run interpreter
+            |> Instruction.interpret interpreter
 
         Assert.Equal(roll, dice.Size)
     }
