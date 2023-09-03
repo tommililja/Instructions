@@ -3,20 +3,18 @@ Example:
 ```fsharp
 module Dice =
 
-    open Instruction
-
     let roll dice = instr {
 
         let! number =
             dice.Size
-            |> generateNumber
+            |> Instruction.roll
 
         do!
             dice.Delay
-            |> Option.map delay
-            |> Option.defaultWith ret
+            |> Option.map Instruction.delay
+            |> Option.defaultWith Instruction.ret
 
-        do! log $"Dice rolled: %i{number}."
+        do! Instruction.log $"Dice rolled: %i{number}."
 
         return number
     }
