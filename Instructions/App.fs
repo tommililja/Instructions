@@ -14,7 +14,7 @@ module App =
 
     let interpreter = {
         Delay = fun ms -> Task.Delay(ms) |> Async.AwaitTask
-        GenerateNumber = fun max -> random.Next(1, max + 1)
+        Roll = fun max -> random.Next(1, max + 1)
         Log = Console.WriteLine
     }
 
