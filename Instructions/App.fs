@@ -1,8 +1,5 @@
 ﻿namespace Instructions
 
-open System
-open System.Threading.Tasks
-
 module App =
 
     let dice = {
@@ -10,13 +7,7 @@ module App =
         Delay = Some 3000
     }
 
-    let random = Random()
-
-    let interpreter = {
-        Delay = fun ms -> Task.Delay(ms) |> Async.AwaitTask
-        Roll = fun max -> random.Next(1, max + 1)
-        Log = Console.WriteLine
-    }
+    let interpreter = Interpreter.create ()
 
     dice
     |> Dice.roll

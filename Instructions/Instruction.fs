@@ -1,11 +1,5 @@
 namespace Instructions
 
-type Interpreter = {
-    Roll: int -> int
-    Delay: int -> unit Async
-    Log: string -> unit
-}
-
 type 'a Instruction =
     | Roll of int * (int -> 'a Instruction)
     | Delay of int * (unit Async -> 'a Instruction Async)
@@ -20,7 +14,7 @@ module Instruction =
 
     let rec bind fn = function
         | Roll (max, next) -> Roll (max, next >> bind fn)
-        | Delay (ms, next) -> Delay(ms, next >> Async.map (bind fn))
+        | Delay (ms, next) -> Delay (ms, next >> Async.map (bind fn))
         | Log (str, next) -> Log (str, next >> bind fn)
         | Done x -> fn x
 
